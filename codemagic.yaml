@@ -5,13 +5,9 @@ workflows:
     environment:
       java: 17
     scripts:
-      - name: Set executable permission for Gradle
-        script: chmod +x gradlew
-      - name: Build debug APK
-        script: ./gradlew :app:assembleDebug
+      - name: Build debug APK (without wrapper)
+        script: |
+          cd $CM_BUILD_DIR
+          gradle :app:assembleDebug
     artifacts:
       - app/build/outputs/**/*.apk
-    publishing:
-      email:
-        recipients:
-          - hoseinpour72@gmail.com
